@@ -1,7 +1,3 @@
-@if(!isset(Auth::user()->email))
-    <script>window.location="/admin";</script>
-  @endif
-
 @extends('layouts.master')
 @section('content')
 <div class="main-panel">

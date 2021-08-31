@@ -30,8 +30,25 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+						
+						 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#"><span>  Welcome </span> <i class="bi bi-chevron-down"></i></a>
+		    
+            <ul>
+              <li><a href="/edituserprofile/10">Edit Profile</a></li>-->
+			  
+             <!-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>-->
+              </li>
+		</ul>
                     </ul>
-                </div>-->
+                </div>
+						  
             </div>
         </nav>
         <!-- Page Header-->
@@ -56,8 +73,6 @@
 					@if ($message = Session::get('error'))
   <!-- <div class="alert alert-succses alert-block">-->
 <div class="alert alert-danger alert-block">
-
-    
     <strong>{{ $message }}</strong>
    </div>
    @endif

@@ -12,8 +12,10 @@ class Book extends Model
 	use Sortable;
 	
 	protected $table="books";
-	protected $fillable=['title','author','publisher','isbn','description','language','genres','image'];
+	protected $fillable=['title','author','publisher','isbn','description','language','genres','image','quantity'];
 	
-	public $sortable = ['id', 'title','author','publisher','isbn','description','language','genres','image'];
+	public $sortable = ['book_id', 'title','author','publisher','isbn','description','language','genres','image','quantity'];
+	
+	
 	        
 }

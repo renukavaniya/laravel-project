@@ -64,6 +64,24 @@
                             <p>Book List</p>
                         </a>
                     </li>
+					<li>
+                        <a class="nav-link" href="request_book">
+                           <!-- <i class="nc-icon nc-atom"></i>-->
+                            <p>Book Request</p>
+                        </a>
+                    </li>
+					<li>
+                        <a class="nav-link" href="borrow_book">
+                           <!-- <i class="nc-icon nc-atom"></i>-->
+                            <p>Borrowed Books</p>
+                        </a>
+                    </li>
+					<li>
+                        <a class="nav-link" href="return_book">
+                           <!-- <i class="nc-icon nc-atom"></i>-->
+                            <p>Return Books</p>
+                        </a>
+                    </li>
                     <li>
                       <!--  <a class="nav-link" href="./maps.html">
                             <i class="nc-icon nc-pin-3"></i>

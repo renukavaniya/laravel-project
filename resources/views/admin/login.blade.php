@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -17,6 +19,16 @@
     <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
+	
+	<!--for clientside validation-->
+	 
+   <style>
+        label.error {
+            color: #dc3545;
+            font-size: 14px;
+        }
+    </style>
+
 </head>
 
 <br><br>
@@ -65,15 +77,15 @@
     </div>
    @endif
 
-<form method="post" enctype="multipart/form-data" id="" action="{{url('/admin/auth')}}">
+<form method="post" enctype="multipart/form-data" id="loginForm" action="{{url('/admin/auth')}}">
                     {{ csrf_field() }}
                      <div class="form-group ">
-						<label>Email </label>
-						<input type="text" class="form-control" name="email" id="email" placeholder="Enter Email" value="@php if(!isset($_COOKIE['email'])){ echo old('email'); }else{ echo $email; } @endphp">
+						<label>Email<span class="text-danger">*</span> </label>
+						<input type="text" class="form-control" name="email" id="email" placeholder="Enter Email" value="@php if(!isset($_COOKIE['email'])){ echo old('email'); }else{ echo $email; } @endphp"  >
 					 </div>
                      <div class="form-group ">
-						<label>Password </label>
-						<input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="@php if(!isset($_COOKIE['password'])){ echo old('password'); }else{ echo $password; } @endphp">
+						<label>Password<span class="text-danger">*</span> </label>
+						<input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" value="@php if(!isset($_COOKIE['password'])){ echo old('password'); }else{ echo $password; } @endphp" >
 					</div>
 					
 					<input type="checkbox" id="remember" class="remember" name="remember"   >Remember Me
@@ -84,11 +96,59 @@
                      </div>
                   </form>
 				  
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+
+				  <script>
+$(document).ready(function(){
+
+ 
+    $('#loginForm').validate({
+      rules:{
+        
+        email : {
+          required : true,
+          maxlength : 50, 
+          email : true
+        },
+		password: {
+          required: true,
+          minlength: 6
+        }
+		
+       
+      },
+      messages : {
+       
+        email : {
+          required : 'Enter Email Detail',
+          email : 'Enter Valid Email Detail',
+          maxlength : 'Email should not be more than 50 character'
+        },
+		 password: {
+          required: "Please enter Password.",
+          minlength: "Password must be at least 8 characters long."
+        }
+		
+       
+      }
+    });
+  
+
+});
+</script>
+
+
 				  </div>
 				  </div>
 				  </div>
 				  </div>
 				  </section>
+				  
+				  
+				  
 </body>
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>

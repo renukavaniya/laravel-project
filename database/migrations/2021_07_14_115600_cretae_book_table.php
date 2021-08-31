@@ -14,7 +14,7 @@ class CretaeBookTable extends Migration
     public function up()
     {
         Schema::create('books', function (Blueprint $table) {
-            $table->id();
+            $table->book_id();
 			$table->string('title');
 			$table->string('author');
 			$table->string('publisher');

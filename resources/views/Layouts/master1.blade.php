@@ -1,3 +1,7 @@
+<?php
+use App\Http\Controllers\BookController;
+$total=BookController::cartItem();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +9,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Login</title>
+  <title>Books Management</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -58,7 +62,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
       <div class="logo">
-        <h1><a href="index.html">Book Management</a></h1>
+        <h1><a href="index.html">Books Management</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -66,11 +70,44 @@
       <nav id="navbar" class="navbar">
         <ul>
           
-		  <li><a href="/register">Register</a></li>
-		  <li><a  href="/user">Login</a></li>
-		  <li><a  href="{{ url('/user/logout') }}">Logout</a></li>
-	
-		</ul>
+         <!-- <li><a href="/register">Register</a></li>
+          <li><a  href="/user">Login</a></li>-->
+          @if(isset(Auth::user()->email))
+           <li class="dropdown"><a href="#"><span> Welcome <strong>{{ Auth::user()->firstname }}</strong> </span> <i class="bi bi-chevron-down"></i></a>
+          
+            
+            <ul>
+            
+              <li><a href="/edituserprofile/{{ Auth::user()->id }} ">Edit Profile</a></li>
+              
+           @endif
+              <li><a href="/changeuserpassword">Change Password</a></li>
+             <!-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>-->
+              </li>
+              
+        </ul>
+        <li><a href="cartlist">Cart({{$total}})</a></li>
+        <li><a href="borrowedbooks">Borrowed Books</a></li>
+         <li><a  href="{{ url('/user/logout') }}">Logout</a></li>
+         
+                     @if(session('cart'))
+                <a href="{{ url('carts') }}" class="btn btn-primary  mt-3 mb-3 btn-block">
+
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                     Cart
+                    <!-- this code count product of choose tha user choose -->
+
+                    <span class="badge badge-pill badge-danger">{{ count(session('cart')) }}</span>
+                </a>@endif
+         
+         
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
@@ -102,55 +139,7 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
-
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-info">
-            <h3>About Eterna</h3>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-            <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
+          
 
     <div class="container">
       <div class="copyright">
