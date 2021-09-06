@@ -47,27 +47,27 @@
 </div>
 @endif
    
-<form method="GET" action="booklist">
+<!--<form method="GET" action="booklist">
 <label for="search" class="text-right">Search:</label>
 <input class="col-md-2" type="search" value="{{request()->query('search')}}" name="search" placeholder="Search" id="search">
 <button type="submit">Submit</button>
 <div>
 <span class="paginationtextfield">Show</span>&nbsp;
-<select id="limit_records" name="limit_records">
+<select id="limit_records" name="limit_records">-->
 <?php
-$record_per_page_arr = array("3","6","9","15","25");
+/*$record_per_page_arr = array("3","6","9","15","25");
 foreach ($record_per_page_arr as $limit_records) {
     if (isset($_GET['limit_records']) && $_GET['limit_records'] == $limit_records) {
         echo '<option value="'.$limit_records.'" selected="selected">'.$limit_records.'</option>' ;
     } else {
         echo '<option value="'.$limit_records.'">'.$limit_records.'</option>';
     }
-}
+}*/
 ?>
-</select>
+<!--</select>
 <span class="paginationtextfield">entries</span>&nbsp;
 </div>
-</form>
+</form>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
  $(document).ready(function(){

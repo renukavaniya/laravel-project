@@ -1,6 +1,6 @@
 <?php
-use App\Http\Controllers\BookController;
-$total=BookController::cartItem();
+use App\Http\Controllers\CartsController;
+$total=CartsController::cartItem();
 ?>
 <!DOCTYPE html>
 <html lang="en">

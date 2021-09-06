@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminsController;
+use App\Http\Controllers\BooksController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CartsController;
+use App\Http\Controllers\BorrowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,78 +28,78 @@ Route::get('/welcome', function () {
 Route::get('/addbook', function () {
     return view('admin.addbook');
 });
-Route::get('/admin',[AdminController::class,'index']);
-Route::get('/mail',[AdminController::class,'website']);
-Route::get('/mail',[AdminController::class,'website']);
+Route::get('/admin', [AdminsController::class,'index']);
+Route::get('/mail', [AdminsController::class,'website']);
+Route::get('/mail', [AdminsController::class,'website']);
 //Route::get('approve_book',[AdminController::class,'website']);
-Route::post('admin/auth',[AdminController::class,'auth']);
-Route::get('admin/logout', [AdminController::class,'logout']);
-Route::post('admin/update_password',[AdminController::class,'update_password']);
-Route::post('store',[BookController::class,'store']);
-Route::post('update/{id}', [BookController::class, 'update']);
-Route::any('approve_book',[AdminController::class,'approve_book']);
+Route::post('admin/auth', [AdminsController::class,'auth']);
+Route::get('admin/logout', [AdminsController::class,'logout']);
+Route::post('admin/update_password', [AdminsController::class,'update_password']);
+Route::post('store', [BooksController::class,'store']);
+Route::post('update/{id}', [BooksController::class, 'update']);
+Route::any('approve_book', [AdminsController::class,'approve_book']);
 
-Route::group(['middleware'=>['AuthCheck1']], function(){
-
-
-Route::get('admin/dashboard',[AdminController::class,'dashboard'])->middleware('is_admin');
+Route::group(['middleware'=>['AuthCheck1']], function () {
 
 
-Route::get('admin/changepassword',[AdminController::class,'changepassword']);
-Route::get('admin/request_book',[AdminController::class,'request_book']);
-Route::get('admin/borrow_book',[AdminController::class,'borrow_book']);
-Route::get('admin/approve_form/{id}/{id2}',[AdminController::class,'approve_form']);
-Route::get('admin/return_book',[AdminController::class,'return_book']);
-Route::get('admin/export-excel',[AdminController::class,'exportToExcel']);
-Route::any('admin/export-excel/{id}',[AdminController::class,'exportToExcel']);
-Route::any('admin/excel/{id}',[AdminController::class,'excel'])->name('export_excel.excel');
-Route::any('admin/excel_bydate/',[AdminController::class,'excel_bydate'])->name('export_excel_bydate.excel');
-Route::any('import.file',[AdminController::class,'importForm'])->name('import.file');
+    Route::get('admin/dashboard', [AdminsController::class,'dashboard'])->middleware('is_admin');
+
+
+    Route::get('admin/changepassword', [AdminsController::class,'changepassword']);
+    Route::get('admin/request_book', [BorrowController::class,'request_Book']);
+    Route::get('admin/borrow_book', [BorrowController::class,'borrow_Book']);
+    Route::get('admin/approve_form/{id}/{id2}', [AdminsController::class,'approve_form']);
+    Route::get('admin/return_book', [BorrowController::class,'return_Booklist']);
+    Route::get('admin/export-excel', [AdminsController::class,'exportToExcel']);
+    Route::any('admin/export-excel/{id}', [AdminsController::class,'exportToExcel']);
+    Route::any('admin/excel/{id}', [AdminsController::class,'excel'])->name('export_excel.excel');
+    Route::any('admin/excel_bydate/', [AdminsController::class,'excel_bydate'])->name('export_excel_bydate.excel');
+    Route::any('import.file', [AdminsController::class,'importForm'])->name('import.file');
 //Route::get('/addbook',[BookController::class,'index']);
-Route::get('admin/addbook',[BookController::class,'index']);
+    Route::get('admin/addbook', [BooksController::class,'index']);
 
 //Route::get('admin/dashboard', [BookController::class, 'show']);
-Route::get('deletebook/{id}', [BookController::class, 'destroy']);
-Route::get('edit/{id}', [BookController::class, 'edit']);
+    Route::get('deletebook/{id}', [BooksController::class, 'destroy']);
+    Route::get('edit/{id}', [BooksController::class, 'edit']);
 
-Route::get('/search',[BookController::class,'search']);
-Route::get('admin/booklist',[BookController::class,'booklist']);
-Route::get('admin/booklist', [BookController::class, 'show']);
-Route::get('admin/userprofile',[BookController::class,'userprofile']);
-Route::get('admin/userprofile', [BookController::class, 'showuser']);
+    Route::get('/search', [BooksController::class,'search']);
+    Route::get('admin/booklist', [BooksController::class,'bookList']);
+    Route::get('admin/booklist', [BooksController::class, 'show']);
+    Route::get('admin/userprofile', [BooksController::class,'userProfile']);
+    Route::get('admin/userprofile', [UsersController::class, 'showUser']);
 });
-Route::post('user/login',[UserController::class,'login']);
-Route::post('/updateuserprofile/{id}', [UserController::class, 'updateuserprofile']);
+Route::post('user/login', [UsersController::class,'login']);
+Route::post('/updateuserprofile/{id}', [UsersController::class, 'updateuserprofile']);
 
 
-Route::get('/user',[UserController::class,'index']);
-Route::get('/register',[UserController::class,'register']);
+Route::get('/user', [UsersController::class,'index']);
+Route::get('/register', [UsersController::class,'register']);
 
-Route::group(['middleware'=>['AuthCheck']], function(){
+Route::group(['middleware'=>['AuthCheck']], function () {
 
 //Route::get('/userdashboard',[UserController::class,'userdashboard']);
-Route::get('/userdashboard',[BookController::class,'showbook']);
-Route::get('/edituserprofile/{id}',[UserController::class,'edituserprofile']);
+    Route::get('/userdashboard', [BooksController::class,'showBook']);
+    Route::get('/edituserprofile/{id}', [UsersController::class,'edituserprofile']);
 
-Route::get('/changeuserpassword',[UserController::class,'changeuserpassword']);
-Route::post('/updateuserpassword',[UserController::class,'updateuserpassword']);
-Route::get('/showbooks',[BookController::class,'showbook']);
-Route::get('/singlebook/{id}',[BookController::class,'singlebook']);
-Route::post('/add_to_cart',[BookController::class,'addToCart']);
-Route::get('addcart/{id}',[BookController::class,'addcart']);
-Route::get('/carts',[BookController::class,'cart']);
-Route::get('/cartlist',[BookController::class,'cartList']);
-Route::get('/delete_cart/{id}',[BookController::class,'deleteCart']);
-Route::get('/deletecart/{id}',[BookController::class,'removeCart']);
-Route::post('/borrownow',[BookController::class,'borrownow']);
-Route::get('/borrowedbooks',[BookController::class,'borrowedbooks']);
-Route::get('/borrowedbooks/pdf',[BookController::class, 'pdf']);
-Route::any('admin/returnbook/{id}/{id1}',[AdminController::class,'returnbook']);
+    Route::get('/changeuserpassword', [UsersController::class,'changeuserpassword']);
+    Route::post('/updateuserpassword', [UsersController::class,'updateuserpassword']);
+    Route::get('/showbooks', [BooksController::class,'showbook']);
+    Route::get('/singlebook/{id}', [BooksController::class,'singleBook']);
+    Route::post('/add_to_cart', [CartsController::class,'addToCart']);
+    Route::get('addcart/{id}', [CartsController::class,'addcart']);
+    Route::get('/carts', [CartsController::class,'cart']);
+    Route::get('/cartlist', [CartsController::class,'cartList']);
+    Route::get('/delete_cart/{id}', [CartsController::class,'deleteCart']);
+    Route::get('/deletecart/{id}', [CartsController::class,'removeCart']);
+    Route::post('/borrownow', [BorrowController::class,'borrowNow']);
+    Route::get('/borrowedbooks', [BorrowController::class,'borrowedBooks']);
+    Route::get('/borrowedbooks/pdf', [BorrowController::class, 'pdf']);
+    Route::any('admin/returnbook/{id}/{id1}', [BorrowController::class,'updateReturn']);
 });
 
-Route::post('storeuser',[UserController::class,'storeuser']);
-Route::get('delete/{id}', [UserController::class, 'deleteuser']);
-Route::get('edituser/{id}', [UserController::class, 'edituser']);
-Route::post('updateuser/{id}', [UserController::class, 'updateuser']);
-Route::get('user/logout', [UserController::class,'logout']);
+Route::post('storeuser', [UsersController::class,'storeuser']);
+Route::get('delete/{id}', [UsersController::class, 'deleteuser']);
+Route::get('edituser/{id}', [UsersController::class, 'edituser']);
+Route::post('updateuser/{id}', [UsersController::class, 'updateuser']);
+Route::get('user/logout', [UsersController::class,'logout']);
 //Route::post('admin/auth',[AdminController::class,'auth']);

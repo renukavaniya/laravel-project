@@ -86,6 +86,10 @@
 					});
 					</script></center>
 					
+					<div class="form-group ">
+						<label>Quantity </label>
+						<input type="text" class="form-control" name="quantity" id="quantity" placeholder="Enter Quantity" value="{{$books->quantity}}">
+					 </div>
 					
 					
 					<br>

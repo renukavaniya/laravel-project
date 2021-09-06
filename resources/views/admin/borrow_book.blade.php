@@ -96,7 +96,7 @@ foreach ($record_per_page_arr as $limit_records) {
                         <label>To_date</label>
                         <input type="date" name="todate" class="disableFuturedate" placeholder="YYYY/MM/DD" value ="">
                     </div>
-    <input type="submit" value="ByDate" name="submit">
+    <input type="submit" value="ExportByDate" name="submit">
     
     </form><br>
 <div class="row">
@@ -148,7 +148,7 @@ foreach ($record_per_page_arr as $limit_records) {
 <form action="excel/{{$book->id}} " method="post">
 @csrf
 <input type="hidden" name="user" value="{{$book->user_id}}">
- <td><button class="btn btn-primary">Export in xlsx</button></td>
+ <td><button class="btn btn-primary">ExportByUser</button></td>
  </form>
 <!--<td><a href="admin/export-excel/{{$book->id}}" class="btn btn-primary">Export in xlsx</a></td>
 <!--<td><a href="approve_form" class="btn btn-success btn-fill">Approve</a></td>-->

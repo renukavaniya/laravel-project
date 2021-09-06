@@ -99,7 +99,11 @@
                    <input type="file" name="image" id="image" class="form-control" value="{{ old('image') }}" >
 						<!--<input type="text" name="image" id="image" class="form-control" value="" >-->
 					</div>
-					
+					<div class="form-group ">
+						 <label>Quantity:</label>
+                   <input type="text" name="quantity" id="quantity" class="form-control" value="{{ old('quantity') }}" >
+						<!--<input type="text" name="image" id="image" class="form-control" value="" >-->
+					</div>
 					
 					<br>
                      <div >

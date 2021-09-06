@@ -76,6 +76,7 @@
                     @csrf
 					<input type="hidden" class="form-control" name="id" value="{{$book->id}}" placeholder="approved" >
 					<input type="hidden" class="form-control" name="id2" value="{{$book1->id}}" placeholder="approved" >
+					
                      <div class="form-group ">
 						<label>Approve<span class="text-danger">*</span> </label>
 						<input type="text" class="form-control" name="approved"  placeholder="approved" >
